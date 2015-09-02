@@ -1,7 +1,7 @@
 lb:
     image: nginx
     volumes:
-      - 'nginx.conf.d:/etc/nginx/conf.d'
+      - './nginx.conf.d:/etc/nginx/conf.d'
       - '.:/var/www'
     links: 
       - php
@@ -13,7 +13,7 @@ lb:
 phpdb: 
     image: mysql:5.5 
     volumes: 
-      - 'php/mysql-data:/var/lib/mysql' 
+      - './php/mysql-data:/var/lib/mysql' 
     environment: 
       MYSQL_ROOT_PASSWORD: php
       MYSQL_DATABASE: php 
@@ -25,7 +25,7 @@ php:
     image: rasfur/php:5.6-apache
     command: apache2-foreground 
     volumes: 
-      - 'php/www:/var/www/html' 
+      - './php/www:/var/www/html' 
     links: 
       - phpdb:db 
     restart: no 
